@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Learning Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                            950: '#4c0519',
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(248, 113, 113, 0.4);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, #f43f5e, #f97316, #e11d48, #881337);
+        }
+
+        .badge-glow {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            animation: reveal 0.8s ease-out forwards;
+        }
+
+        /* Modal Styles */
+        #topic-modal.hidden, #app-modal.hidden, #demo-modal.hidden {
+            display: none !important;
+        }
+
+        #topic-modal:not(.hidden), #app-modal:not(.hidden), #demo-modal:not(.hidden) {
+            display: flex !important;
+        }
+
+        .modal-reveal {
+            animation: modalReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.1);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(239, 68, 68, 0.15);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .modal-glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-shell {
+            position: relative;
+            background:
+                    radial-gradient(circle at top left, rgba(244, 63, 94, 0.16), transparent 32%),
+                    radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 28%),
+                    linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.94));
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow:
+                    0 32px 80px rgba(2, 6, 23, 0.65),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        .modal-shell::before {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            pointer-events: none;
+        }
+
+        .modal-topbar {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .modal-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .modal-close:hover {
+            background: rgba(244, 63, 94, 0.1);
+            border-color: rgba(244, 63, 94, 0.28);
+        }
+
+        .modal-input {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        }
+
+        .modal-input:focus {
+            border-color: rgba(244, 63, 94, 0.45);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.12);
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+<!-- Background Decoration -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-brand-500/10 blur-[120px]"></div>
+    <div class="absolute top-[40%] -right-[10%] w-[30%] h-[30%] rounded-full bg-orange-500/10 blur-[100px]"></div>
+    <div class="absolute -bottom-[10%] left-[20%] w-[35%] h-[35%] rounded-full bg-rose-500/10 blur-[110px]"></div>
+</div>
+
+<!-- Navigation/Header Bar -->
+<nav class="sticky top-0 z-50 glass-card border-none rounded-none border-b border-white/5 py-4 px-6 mb-12">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div class="p-2 transition-all">
+                    <img src="https://lexicongruppen.se/media/wi5hphtd/lexicon-logo.svg" alt="Lexicon Logo"
+                         class="h-7 w-auto">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-black text-lg tracking-tighter leading-none text-white">LEARNING PATH<span
+                            class="text-brand-500"> JavaGroup</span></span>
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-0.5">Lexicon Växjö</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="max-w-4xl mx-auto px-6 pt-8 pb-20 text-center reveal">
+    <div class="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-brand-400 uppercase bg-brand-500/10 border border-brand-500/20 rounded-full">
+        Full-Stack Course
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+        The Developer's <span class="text-brand-400">Roadmap</span>
+    </h1>
+    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        An end-to-end journey from essential foundations to next-generation, AI-powered applications.
+    </p>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 pb-32 relative">
+
+    <!-- Timeline Central Line -->
+    <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] timeline-line opacity-20 -translate-x-1/2 hidden md:block"></div>
+    <div class="absolute left-6 top-0 bottom-0 w-[2px] timeline-line opacity-20 md:hidden"></div>
+
+    <!-- 1. TOK Section -->
+    <div class="relative z-10 mb-24 md:flex items-center justify-between reveal" style="animation-delay: 0.1s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 border border-brand-500/20 rounded-lg">Phase 01</span>
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Foundations & VCS</h3>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Establishing the essential environment and
+                    version control standards used in professional teams.</p>
+                <ul class="space-y-3">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('course-intro')">
+                        <div class="w-5 h-5 rounded-full bg-brand-500/20 flex items-center justify-center mr-3 group-hover/item:bg-brand-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+                        </div>
+                        Course introduction & Methodology
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('git-vcs')">
+                        <div class="w-5 h-5 rounded-full bg-brand-500/20 flex items-center justify-center mr-3 group-hover/item:bg-brand-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+                        </div>
+                        Git Version Control & GitHub Workflow
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-brand-500 shadow-[0_0_15px_rgba(239,68,68,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+    <!-- 2. GUB Section -->
+    <div class="relative z-10 mb-24 md:flex items-center justify-between md:flex-row-reverse reveal"
+         style="animation-delay: 0.2s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group border-orange-500/20 hover:border-orange-500/40">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-orange-400 uppercase bg-orange-500/10 border border-orange-500/20 rounded-lg">Phase 02</span>
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Core Development</h3>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Mastering the building blocks of the web and
+                    algorithmic thinking with Java.</p>
+                <ul class="space-y-3">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('web-fundamentals')">
+                        <div class="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center mr-3 group-hover/item:bg-orange-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>
+                        </div>
+                        Modern Web (HTML5 & CSS3)
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('algo-flowchart')">
+                        <div class="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center mr-3 group-hover/item:bg-orange-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>
+                        </div>
+                        Algorithms & Logical FlowCharts
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-fundamentals')">
+                        <div class="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center mr-3 group-hover/item:bg-orange-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-orange-400"></div>
+                        </div>
+                        Java Fundamentals & Syntax
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+    <!-- 3. AUB Section (With Milestone) -->
+    <div class="relative z-10 mb-24 md:flex items-center justify-between reveal" style="animation-delay: 0.3s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group border-rose-500/20 hover:border-rose-500/40 relative overflow-hidden">
+                <!-- Milestone Ribbon -->
+                <div class="absolute top-0 right-0">
+                    <div class="bg-amber-500 text-slate-900 text-[8px] font-black py-1 px-8 transform rotate-45 translate-x-6 translate-y-2 uppercase tracking-tighter">
+                        Milestone
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-rose-400 uppercase bg-rose-500/10 border border-rose-500/20 rounded-lg">Phase 03</span>
+                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Advanced Java & Data</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-arrays-collections')">
+                        <div class="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-400"></div>
+                        </div>
+                        Arrays, Collections & Unit Testing
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-oop')">
+                        <div class="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-400"></div>
+                        </div>
+                        OOP (Encapsulation, Inheritance, Poly)
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-lambda')">
+                        <div class="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-400"></div>
+                        </div>
+                        Lambda Expressions & Stream API
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-exception-nio')">
+                        <div class="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-400"></div>
+                        </div>
+                        Exception Handling & NIO
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('sql-jdbc')">
+                        <div class="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-400"></div>
+                        </div>
+                        Relational Databases (SQL & JDBC)
+                    </li>
+                </ul>
+
+                <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center mr-4 text-amber-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-amber-500 uppercase tracking-widest">Project Test 1</p>
+                        <p class="text-white font-bold text-sm">System Design Challenge</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+    <!-- 4. Spring Section (Enterprise) -->
+    <div class="relative z-10 mb-24 md:flex items-center justify-between md:flex-row-reverse reveal"
+         style="animation-delay: 0.4s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group border-red-500/20 hover:border-red-500/40 relative overflow-hidden">
+                <div class="absolute top-0 right-0">
+                    <div class="bg-amber-500 text-slate-900 text-[8px] font-black py-1 px-8 transform rotate-45 translate-x-6 translate-y-2 uppercase tracking-tighter">
+                        Milestone
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-red-400 uppercase bg-red-500/10 border border-red-500/20 rounded-lg">Phase 04</span>
+                    <div class="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Enterprise Ecosystem</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('spring-core')">
+                        <div class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center mr-3 group-hover/item:bg-red-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        </div>
+                        Spring Core & Dependency Injection
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('spring-boot-jpa')">
+                        <div class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center mr-3 group-hover/item:bg-red-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        </div>
+                        Spring Boot & Data JPA
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('spring-architecture')">
+                        <div class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center mr-3 group-hover/item:bg-red-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        </div>
+                        Multilayered Service Architecture
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('rest-api-design')">
+                        <div class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center mr-3 group-hover/item:bg-red-500/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                        </div>
+                        RESTful API Design
+                    </li>
+                </ul>
+                <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center mr-4 text-amber-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-amber-500 uppercase tracking-widest">Project Test 2</p>
+                        <p class="text-white font-bold text-sm">Full-Stack Backend Project</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+    <!-- 5. Frontend Section -->
+    <div class="relative z-10 mb-24 md:flex items-center justify-between reveal" style="animation-delay: 0.5s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group border-rose-600/20 hover:border-rose-600/40 relative overflow-hidden">
+                <div class="absolute top-0 right-0">
+                    <div class="bg-amber-500 text-slate-900 text-[8px] font-black py-1 px-8 transform rotate-45 translate-x-6 translate-y-2 uppercase tracking-tighter">
+                        Milestone
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-rose-500 uppercase bg-rose-600/10 border border-rose-600/20 rounded-lg">Phase 05</span>
+                    <div class="w-10 h-10 rounded-xl bg-rose-600/20 flex items-center justify-center text-rose-500 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Modern Frontend</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('tailwind-design')">
+                        <div class="w-5 h-5 rounded-full bg-rose-600/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-600/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                        </div>
+                        Tailwind CSS & Component Design
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('java-script')">
+                        <div class="w-5 h-5 rounded-full bg-rose-600/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-600/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                        </div>
+                        JavaScript (ES6+)
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('react-typescript')">
+                        <div class="w-5 h-5 rounded-full bg-rose-600/20 flex items-center justify-center mr-3 group-hover/item:bg-rose-600/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                        </div>
+                        React.js & TypeScript Integration
+                    </li>
+                </ul>
+                <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center mr-4 text-amber-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-amber-500 uppercase tracking-widest">Project Test 3</p>
+                        <p class="text-white font-bold text-sm">Interactive Client Dashboard</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-rose-500 shadow-[0_0_15px_rgba(244,31,95,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+    <!-- 6. AI Section (Future Tech) -->
+    <div class="relative z-10 mb-12 md:flex items-center justify-between md:flex-row-reverse reveal"
+         style="animation-delay: 0.6s;">
+        <div class="md:w-[45%] mb-8 md:mb-0">
+            <div class="glass-card p-8 rounded-3xl group border-red-600/20 hover:border-red-600/40 relative overflow-hidden">
+                <div class="absolute top-0 right-0">
+                    <div class="bg-amber-500 text-slate-900 text-[8px] font-black py-1 px-8 transform rotate-45 translate-x-6 translate-y-2 uppercase tracking-tighter">
+                        Milestone
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <span class="px-3 py-1 text-[10px] font-bold tracking-widest text-red-500 uppercase bg-red-600/10 border border-red-600/20 rounded-lg">Phase 06</span>
+                    <div class="w-10 h-10 rounded-xl bg-red-600/20 flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-white">AI & Intelligent Apps</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('prompt-engineering')">
+                        <div class="w-5 h-5 rounded-full bg-red-600/20 flex items-center justify-center mr-3 group-hover/item:bg-red-600/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
+                        </div>
+                        Prompt Engineering for Developers
+                    </li>
+                    <li class="flex items-center text-slate-300 text-sm hover:text-white transition-colors cursor-pointer group/item"
+                        onclick="openTopic('spring-ai')">
+                        <div class="w-5 h-5 rounded-full bg-red-600/20 flex items-center justify-center mr-3 group-hover/item:bg-red-600/40 transition-colors">
+                            <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
+                        </div>
+                        Spring AI
+                    </li>
+                </ul>
+                <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center mr-4 text-amber-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-amber-500 uppercase tracking-widest">Project Test 4</p>
+                        <p class="text-white font-bold text-sm">AI-Powered Capstone Project</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Node -->
+        <div class="absolute left-0 md:left-1/2 top-0 md:top-1/2 transform -translate-x-[11px] md:-translate-x-1/2 md:-translate-y-1/2 w-6 h-6 rounded-full bg-slate-900 border-4 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.5)] z-20"></div>
+        <div class="md:w-[45%]"></div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="relative z-10 border-t border-white/5 py-20 px-6 bg-slate-950/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="p-2">
+                        <img src="https://lexicongruppen.se/media/wi5hphtd/lexicon-logo.svg" alt="Lexicon Logo"
+                             class="h-6 w-auto">
+                    </div>
+                    <span class="font-black text-xl tracking-tighter text-white uppercase">LEARNING<span
+                            class="text-brand-500">PATH</span></span>
+                </div>
+                <p class="text-slate-400 text-sm max-w-sm leading-relaxed mb-8">
+                    The definitive roadmap for professional web development. Master the stack that powers the modern
+                    enterprise.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#"
+                       class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-brand-400 hover:border-brand-500/30 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                        </svg>
+                    </a>
+                    <a href="#"
+                       class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-brand-400 hover:border-brand-500/30 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Program</h4>
+                <ul class="space-y-4 text-slate-500 text-xs font-medium">
+                    <li><a href="#" class="hover:text-brand-400 transition-colors">Course Modules</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition-colors">Career Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Support</h4>
+                <ul class="space-y-4 text-slate-500 text-xs font-medium">
+                    <li><a href="#" class="hover:text-brand-400 transition-colors">Contact</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-center md:text-left">
+            <p class="text-slate-600 text-[10px] tracking-widest uppercase">© 2026 Lexicon • Developed with ❤️ for
+                Engineers</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="openDemoModal()"
+                        class="px-8 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-500/30 text-white text-xs font-black uppercase tracking-[0.2em] transition-all hover:bg-white/10 active:scale-95 flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                    View Demo Project
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Demo Modal -->
+<div id="demo-modal"
+     class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-10 bg-slate-950/60 backdrop-blur-md">
+    <div class="modal-shell w-full h-full max-w-6xl rounded-[2.5rem] overflow-hidden flex flex-col modal-reveal relative">
+        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+        <!-- Modal Header -->
+        <div class="modal-topbar px-6 md:px-8 py-5 md:py-6 flex justify-between items-center gap-4">
+            <div class="flex items-center space-x-4 min-w-0">
+                <div class="w-12 h-12 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 border border-brand-500/20 shadow-lg shadow-brand-500/5 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                </div>
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="modal-chip text-brand-300 border-brand-500/20 bg-brand-500/10">Project Demo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 shrink-0">
+
+                <button onclick="closeDemoModal()"
+                        class="modal-close group w-10 h-10 rounded-2xl flex items-center justify-center text-slate-500 hover:text-brand-400 transition-all">
+                    <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none"
+                         stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Content (Iframe) -->
+        <div class="flex-1 overflow-hidden p-3 md:p-4 bg-slate-950/30">
+            <div class="modal-panel h-full rounded-[2rem] overflow-hidden">
+                <div class="h-10 px-4 flex items-center gap-2 border-b border-white/8 bg-slate-950/55">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-400/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                    <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500 ml-3">Preview</span>
+                </div>
+                <div class="h-[calc(100%-2.5rem)] bg-white">
+                    <iframe src="demo.html" class="w-full h-full border-none" title="Event App Demo"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Application Modal -->
+<div id="app-modal"
+     class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6 bg-slate-950/60 backdrop-blur-md">
+    <div class="modal-shell w-full max-w-xl max-h-[90vh] rounded-[2.5rem] overflow-hidden flex flex-col modal-reveal">
+        <!-- Modal Header -->
+        <div class="modal-topbar px-6 md:px-8 pt-7 pb-6 flex justify-between items-start gap-4">
+            <div class="flex items-center space-x-5">
+                <div class="w-14 h-14 rounded-[1.25rem] bg-brand-500/10 flex items-center justify-center text-brand-400 border border-brand-500/20 shadow-lg shadow-brand-500/5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="modal-chip text-brand-300 border-brand-500/20 bg-brand-500/10">Application</span>
+                        <span class="modal-chip">Join the Path</span>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Apply Now</h2>
+                    <p class="text-sm text-slate-400 mt-1">Share your details and we will follow up with the next intake information.</p>
+                </div>
+            </div>
+            <button onclick="closeAppModal()"
+                    class="modal-close group w-10 h-10 rounded-2xl flex items-center justify-center text-slate-500 hover:text-brand-400 transition-all shrink-0">
+                <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none"
+                     stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Modal Content (Form) -->
+        <div class="flex-1 overflow-y-auto px-6 md:px-8 py-6 custom-scrollbar">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                <div class="modal-panel rounded-2xl px-4 py-4">
+                    <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-slate-500 mb-2">Format</p>
+                    <p class="text-sm font-semibold text-white">Hands-on and team-based</p>
+                </div>
+                <div class="modal-panel rounded-2xl px-4 py-4">
+                    <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-slate-500 mb-2">Focus</p>
+                    <p class="text-sm font-semibold text-white">Full-stack with AI tools</p>
+                </div>
+                <div class="modal-panel rounded-2xl px-4 py-4">
+                    <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-slate-500 mb-2">Response</p>
+                    <p class="text-sm font-semibold text-white">Reviewed by the program team</p>
+                </div>
+            </div>
+
+            <form id="application-form" class="modal-panel rounded-[2rem] p-5 md:p-6 space-y-5 pb-6">
+                <div>
+                    <label for="full-name"
+                           class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Full
+                        Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="John Doe" required
+                           class="modal-input w-full rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none transition-all">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="email"
+                               class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Email
+                            Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required
+                               class="modal-input w-full rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="phone"
+                               class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Phone
+                            Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+46 00 000 00 00"
+                               class="modal-input w-full rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description"
+                           class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Why do
+                        you want to join?</label>
+                    <textarea id="description" name="description" rows="4"
+                              placeholder="Tell us about your background and goals..." required
+                              class="modal-input w-full rounded-2xl px-5 py-3.5 text-white placeholder:text-slate-600 focus:outline-none transition-all resize-none"></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full py-4 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-brand-500/25 active:scale-[0.98]">
+                        Submit My Application
+                    </button>
+                </div>
+
+                <p class="text-[10px] text-slate-500 text-center leading-relaxed">
+                    By submitting, you agree to our <a href="#" class="text-brand-400 hover:underline">Terms</a> and <a
+                        href="#" class="text-brand-400 hover:underline">Privacy Policy</a>.
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Topic Details Modal -->
+<div id="topic-modal"
+     class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-6 bg-slate-950/60 backdrop-blur-md">
+
+    <div class="modal-shell w-full max-w-2xl md:max-w-4xl lg:max-w-5xl max-h-[95vh] rounded-[2.25rem] overflow-hidden flex flex-col modal-reveal">
+        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+
+        <!-- Header -->
+        <div class="modal-topbar px-6 md:px-10 pt-7 pb-6 flex justify-between items-start gap-4">
+
+            <div class="flex items-center space-x-5">
+
+                <div id="modal-icon"
+                     class="w-14 h-14 rounded-[1.25rem] bg-brand-500/10 flex items-center justify-center text-brand-400 border border-brand-500/20 shadow-lg">
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span id="modal-phase"
+                              class="modal-chip text-brand-300 border-brand-500/20 bg-brand-500/10">
+                            Phase 01
+                        </span>
+                        <span class="modal-chip">Deep Dive</span>
+                    </div>
+
+                    <h2 id="modal-title"
+                        class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                        Topic Title
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-2">Module overview, expected outcomes, and the practical focus for this phase.</p>
+                </div>
+            </div>
+
+            <!-- Close Button -->
+            <button onclick="closeModal()"
+                    class="modal-close group w-10 h-10 rounded-2xl flex items-center justify-center text-slate-500 hover:text-brand-400 transition-all shrink-0">
+                <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-y-auto px-4 md:px-6 py-4 md:py-5 custom-scrollbar">
+
+            <div id="modal-body"
+                 class="modal-panel rounded-[1.75rem] p-6 md:p-8 prose prose-invert max-w-4xl mx-auto text-slate-200 leading-relaxed">
+                <!-- Injected content -->
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="px-6 md:px-10 py-4 border-t border-white/5 flex justify-between items-center bg-white/[0.02]">
+            <span class="text-xs text-slate-500">Learning Module</span>
+            <span class="text-[11px] uppercase tracking-[0.24em] text-slate-600">Press Esc to close</span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const listItemIcon = `
+        <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-brand-500/20 bg-brand-500/10 text-brand-300">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+        </span>`;
+
+    const topics = {
+        'course-intro': {
+            phase: 'Phase 01',
+            title: 'Course Introduction & Learning Methodology',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
+            color: 'brand',
+            content: `
+<div class="space-y-10">
+
+    <!-- WHAT / HOW -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>Strong full-stack development skills</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Experience with real-world project architecture</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Understanding of modern tools and workflows</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Ability to build AI-enhanced applications</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>Hands-on development and guided practice</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Real-world problem solving</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Team-based collaboration</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Continuous feedback and iteration</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- JOURNEY -->
+    <div class="space-y-5 border-l border-white/10 pl-6">
+
+        <h4 class="text-brand-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Learning Journey
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            The journey starts by building confidence in essential development practices, including version control,
+            collaborative workflows, and understanding how modern teams operate.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            From there, focus shifts to the foundations of the web — learning how structure, layout, and responsiveness
+            come together using HTML and CSS, while strengthening logical thinking through algorithms and flow-based problem solving.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Core programming skills are developed using Java, progressing from basic concepts to more advanced structures.
+            This includes working with collections, testing, and designing systems using object-oriented principles such as abstraction and modular design.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            As skills deepen, attention turns to writing more efficient and flexible code using modern Java features,
+            handling errors properly, and managing data through file systems and structured operations.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Data becomes a key focus through relational databases — understanding how information is stored,
+            queried, and connected — and integrating it into applications using JDBC.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            This leads into enterprise-level development, where applications are structured using Spring Boot.
+            Concepts like dependency injection, data persistence, and RESTful services are applied to build scalable backend systems.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            On the client side, modern interfaces are created using Tailwind CSS, JavaScript, and React,
+            allowing seamless interaction between users and backend services.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            In the final stage, attention shifts toward integrating artificial intelligence into applications.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            This includes understanding how generative AI is used in real-world systems, and learning how to guide it effectively
+            through structured prompt design and experimentation.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Using Spring AI, intelligent features are integrated into applications — such as conversational interfaces,
+            contextual responses, and tool-driven automation — creating systems that go beyond traditional software.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Throughout the program, knowledge is reinforced by building practical solutions such as booking platforms,
+            event systems, and AI-driven applications — all while working with professional development practices.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end, the ability to design, build, and understand complete systems — from frontend to backend to AI integration —
+            becomes a core strength.
+        </p>
+
+    </div>
+
+</div>
+`
+        },
+
+        'git-vcs': {
+            phase: 'Phase 01',
+            title: 'Git Version Control & GitHub Workflow',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h6m-6 5h10M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"></path></svg>',
+            color: 'brand',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using Git to track changes and manage project history.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Understanding of the working directory, staging area, and local repository workflow.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Ability to recover from common mistakes using restore, reset, and log inspection.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical knowledge of GitHub as a remote backup and collaboration platform.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By initializing a repository, creating files, and making structured commits from the command line.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on status checks, diffs, staging, and commit history review.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By simulating mistakes and restoring or unstaging changes safely.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By connecting a local project to GitHub and practicing push, pull, fetch, and remote setup.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-brand-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            Git and GitHub form the foundation of modern software collaboration. This topic introduces version control as a practical system for tracking every change,
+            protecting work from mistakes, and understanding how a project evolves over time.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module starts with the purpose of version control systems and why Git is considered the industry standard.
+            Explore repositories, commits, staging, logs, diffs, and the everyday workflow used to move from edited files to a saved project history.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Attention is also given to safe recovery practices such as restoring changes, unstaging files, and reviewing previous commits.
+            Build confidence working with real projects where mistakes and revisions are normal.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The topic then extends from local Git usage to GitHub, where repositories can be published online, backed up, and shared with others.
+            Work through how local changes connect to a remote repository through commands such as push, pull, fetch, and remote setup.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the module, understand how to manage code history professionally, collaborate more safely, and use GitHub as a central platform for team-based development.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'web-fundamentals': {
+            phase: 'Phase 02',
+            title: 'Modern Web (HTML5 & CSS3)',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16v14H4V5zm3 3h10M7 12h4m-4 3h7"></path></svg>',
+            color: 'orange',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of how browsers, servers, and web pages work together.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Strong foundations in HTML5 for structuring pages with semantic and accessible markup.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical CSS3 skills for styling, spacing, typography, and responsive layouts.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>The ability to build and style complete web pages using modern front-end fundamentals.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By exploring the client-server model and the role of HTML, CSS, and JavaScript in the browser.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on HTML exercises covering document structure, elements, tables, forms, and semantic tags.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By styling real page sections with selectors, colors, spacing, typography, and the box model.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through layout practice using Flexbox, Grid, and reusable CSS variables for cleaner design systems.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-orange-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces the foundations of web development by focusing on how modern websites are structured and styled.
+            Start by understanding how the web works, including the relationship between browser, server, database, and the HTTP request-response cycle.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The first major focus is HTML5, where the structural layer of a web page takes shape through practical markup work.
+            This includes document boilerplate, tags, elements, attributes, semantic sections, tables, forms, and special entities used to display reserved characters and symbols.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The second focus is CSS3, which transforms plain markup into a polished interface.
+            Work with selectors, properties, colors, typography, margins, padding, borders, and the box model, then continue into layout systems such as Flexbox and Grid.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module also introduces good frontend habits such as external stylesheets, global resets, CSS variables, and building small practical pages that combine structure with presentation.
+            The emphasis is on understanding why HTML and CSS are separate, how they complement each other, and how they prepare the path for JavaScript and modern UI frameworks.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, create well-structured pages, apply professional styling, and think more clearly about layout, semantics, and responsive visual design.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'algo-flowchart': {
+            phase: 'Phase 02',
+            title: 'Algorithms & Logical FlowCharts',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 19h6M5 9h14M5 15h14M7 7l-2 2 2 2m10-4 2 2-2 2m-10 4-2 2 2 2m10-4 2 2-2 2"></path></svg>',
+            color: 'orange',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A stronger ability to break down problems into clear, logical steps before writing code.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Understanding of algorithms as language-independent solutions built around input, process, and output.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical skill in representing logic through natural language, pseudocode, and flowcharts.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better confidence handling decisions, branching, and structured problem-solving in programming tasks.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By studying everyday examples of algorithms and connecting them to software logic.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through exercises that turn problems into step-by-step solutions using the IPO model.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By practicing pseudocode with conditions, comparisons, loops, and structured indentation.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through visual flowchart work using standard symbols, decision branches, and process mapping tools.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-orange-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces algorithmic thinking as the foundation of programming and problem-solving.
+            Explore how a problem can be translated into a sequence of logical steps that describe what should happen before any programming language is involved.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module begins with the meaning of an algorithm and why algorithms matter for organizing thinking, reducing mistakes, and building efficient solutions.
+            Work with the input-process-output model and use it as a bridge between a problem and its final coded solution.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            From there, the topic develops two key ways of expressing logic: pseudocode and flowcharts.
+            Use pseudocode to describe program steps in a structured but language-neutral format, while flowcharts make the same logic visual through actions, decisions, inputs, outputs, and directional flow.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Compare different representation methods such as natural language, pseudocode, and diagrams, and practice applying them to tasks involving decisions, comparisons, and process design.
+            The topic emphasizes planning first, so coding later becomes clearer, faster, and more accurate.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, analyze problems more systematically, describe logic clearly, and use pseudocode and flowcharts as practical planning tools before implementation.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-fundamentals': {
+            phase: 'Phase 02',
+            title: 'Java Fundamentals & Syntax',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4h8M7 8h10M9 12h6m-7 4h8M6 20h12"></path></svg>',
+            color: 'orange',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A solid understanding of Java syntax, structure, and the rules that define a Java program.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence working with variables, data types, operators, conditions, loops, strings, methods, and basic classes.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of core Java concepts such as scope, overloading, static vs instance members, and string handling.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A stronger foundation for writing clear, structured, and maintainable Java code in real projects.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By reading and writing small Java programs that start from the class structure and main method.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on practice with variables, casting, operators, selection statements, loops, and method design.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By exploring strings, StringBuilder, date and time handling, and object-oriented basics through practical examples.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through structured exercises inside standard Maven project organization and professional naming conventions.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-orange-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces the core building blocks of programming in Java and moves from general problem-solving into writing real code.
+            The module begins with the structure of a Java application, naming conventions, Maven project layout, and the role of classes, packages, and the main entry point.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the language fundamentals: variables, primitive data types, type casting, arithmetic and logical operators, conditional statements, loops, and string handling.
+            These topics build the technical grammar needed to write programs that read data, make decisions, repeat actions, and produce useful output.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module also introduces early object-oriented thinking through classes, objects, methods, fields, access modifiers, scope, and the difference between static and instance members.
+            Additional topics such as method overloading, StringBuilder, and the Java Date and Time API expand understanding of how Java is used beyond the absolute basics.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Across both parts of the material, the emphasis is on writing readable code, following conventions, and understanding why Java behaves the way it does rather than only memorizing syntax.
+            Connect concepts step by step so later topics such as object-oriented design, collections, and backend development become easier to understand.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, build small Java programs confidently, explain the purpose of the main language constructs, and work with the syntax patterns that support further development in the course.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-arrays-collections': {
+            phase: 'Phase 03',
+            title: 'Arrays, Collections & Unit Testing',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h10M4 17h16M18 10l2 2-2 2"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A practical understanding of arrays as fixed-size structures and collections as flexible object-based containers.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence working with iteration, searching, resizing strategies, and the core utility classes used with array-based data.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear introduction to JUnit 5 and the habits behind reliable unit testing, including happy paths, edge cases, and invalid inputs.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of the Java Collections Framework, wrapper classes, common collection types, and object comparison in collections.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By creating, accessing, iterating, and expanding arrays through direct coding examples and utility methods such as <code class="text-brand-300">Arrays.copyOf</code>.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through exercises that compare index-based loops and enhanced for-loops, including when modification is or is not possible.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By writing JUnit 5 tests with annotations, assertions, and scenario-based thinking around expected, negative, and boundary cases.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical collection examples using <code class="text-brand-300">ArrayList</code>, utility helpers, wrapper classes, and equality rules for custom objects.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic extends core Java skills by introducing structured ways to store groups of values and verify program behavior through testing.
+            Start with arrays, where values of the same type are stored in a fixed-size sequence using zero-based indexing and direct positional access.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through declaration, initialization, iteration, two-dimensional arrays, and manual expansion strategies, then compare those patterns with the helper methods available in the <code class="text-brand-300">Arrays</code> utility class.
+            This builds a stronger sense of how data is organized in memory and why arrays are useful even though they cannot resize automatically.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then introduces unit testing with JUnit 5 as a way to validate individual methods in isolation.
+            Explore test structure, annotations, assertions, and the habit of thinking in use cases such as happy paths, negative scenarios, edge cases, and corner cases before implementation grows larger.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            From there, move into the Java Collections Framework, where dynamic data structures such as <code class="text-brand-300">ArrayList</code>, sets, and maps provide more flexibility than arrays.
+            Connect this with wrapper classes, collection utilities, null-safe object helpers, and the importance of overriding <code class="text-brand-300">equals()</code> and <code class="text-brand-300">hashCode()</code> when storing custom objects.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, work comfortably with grouped data, choose between arrays and collections more intentionally, and write basic automated tests that make Java code safer to change and easier to trust.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-oop': {
+            phase: 'Phase 03',
+            title: 'Object-Oriented Programming (OOP)',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10v10H7zM4 12h3m10 0h3M12 4v3m0 10v3"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of how software can be structured around objects that combine data and behavior.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using the main OOP principles: encapsulation, inheritance, polymorphism, and abstraction.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of classes, objects, constructors, static members, object relationships, and behavioral contracts through interfaces.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A stronger ability to design Java code that is more reusable, maintainable, and closer to real-world system modeling.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By modeling real-world and conceptual entities such as cars, users, bookings, burgers, and orders as Java classes and objects.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical class design work with fields, methods, constructors, enums, and shared static members.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By exploring inheritance hierarchies, overriding, overloading, and class relationships in realistic domain examples.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through abstraction exercises using abstract classes and interfaces to separate behavior contracts from implementation details.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces object-oriented programming as a way to structure software around meaningful objects instead of isolated procedures.
+            Start by understanding how classes act as blueprints and how objects become concrete instances with their own fields, methods, and lifecycle.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the building blocks of object design: fields for state, methods for behavior, constructors for initialization, static members for shared class-level data, and relationships between objects that reflect real systems.
+            This creates a more natural way to model domains such as vehicles, users, bookings, menu items, or orders.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then develops the four core OOP principles. Use encapsulation to protect internal state, inheritance to reuse and extend behavior, polymorphism to support shared method names with different outcomes, and abstraction to hide complexity behind cleaner interfaces.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into abstract classes and interfaces to understand when to share common base logic and when to define behavioral contracts across different types.
+            The emphasis stays on writing Java code that is easier to extend, easier to reason about, and better aligned with larger application design.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, design object-oriented structures more intentionally, explain the major OOP concepts clearly, and apply them in Java programs that need stronger organization and reuse.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-lambda': {
+            phase: 'Phase 03',
+            title: 'Lambda Expressions & Stream API',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 5l5 7-5 7M13 7h4m-4 5h6m-6 5h4"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of functional programming ideas such as transformation, immutability, and pipeline-based thinking.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using lambda expressions to represent small pieces of behavior without extra boilerplate classes.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical knowledge of Java functional interfaces including custom interfaces and the most common built-in types.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>The ability to process collections more declaratively with the Stream API through filtering, mapping, and terminal operations.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By comparing imperative step-by-step code with more declarative, functional ways of expressing the same logic.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on lambda examples that replace anonymous implementations with compact behavior expressions.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working with prebuilt interfaces such as <code class="text-brand-300">Predicate</code>, <code class="text-brand-300">Function</code>, <code class="text-brand-300">Consumer</code>, and <code class="text-brand-300">Supplier</code>.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through stream pipelines that move from a source, through intermediate operations, into terminal operations that produce final results.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces functional programming concepts in Java and shows how code can be written in a more declarative style when working with data.
+            Start by shifting from step-by-step imperative thinking toward describing what result should be produced and how data should flow through a series of transformations.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through functional interfaces as the foundation that makes lambda expressions possible.
+            Use lambda syntax to represent small units of behavior directly in code, reduce boilerplate, and pass logic into methods more naturally.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then introduces the most important prebuilt interfaces in <code class="text-brand-300">java.util.function</code>, including predicates, transformations, consumers, suppliers, and operators.
+            This builds a vocabulary for expressing common behaviors in a reusable and consistent way across Java APIs.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            From there, move into the Stream API and understand stream pipelines as a way to process data from a source through intermediate and terminal operations.
+            Explore filtering, mapping, sorting, matching, reducing, lazy evaluation, and the difference between storing data in collections and processing data through streams.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, write cleaner Java code for data transformation, use lambdas with more confidence, and build readable stream pipelines that focus on intent rather than low-level mechanics.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-exception-nio': {
+            phase: 'Phase 03',
+            title: 'Exception Handling & NIO',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h5m-5 5h8M5 4h14v16H5V4z"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of what exceptions are, why they happen, and how they interrupt the normal flow of a Java program.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence distinguishing between checked exceptions, unchecked exceptions, and serious system errors.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical knowledge of <code class="text-brand-300">try</code>, <code class="text-brand-300">catch</code>, <code class="text-brand-300">finally</code>, <code class="text-brand-300">throw</code>, <code class="text-brand-300">throws</code>, and custom exceptions.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of safe file and resource handling through Java NIO-style APIs and try-with-resources patterns.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By exploring common runtime failures such as invalid indexes, null access, division by zero, and file-related problems.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on handling of exceptions with structured <code class="text-brand-300">try-catch-finally</code> flows and resource cleanup patterns.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By practicing when to throw exceptions directly, when to propagate them with <code class="text-brand-300">throws</code>, and when to define custom business exceptions.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through file-reading examples that use <code class="text-brand-300">Files</code>, <code class="text-brand-300">Paths</code>, and automatic closing with try-with-resources.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces error handling in Java as an essential part of writing stable applications.
+            Start by understanding exceptions as runtime events that interrupt normal program flow and require a safe response instead of an abrupt crash.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the main exception categories in Java, including checked exceptions, unchecked exceptions, and errors, and understand where each type belongs in the broader exception hierarchy.
+            This provides the foundation for deciding what should be handled, what should be prevented through better logic, and what usually cannot be recovered from inside the application.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then focuses on structured handling with <code class="text-brand-300">try</code>, <code class="text-brand-300">catch</code>, <code class="text-brand-300">finally</code>, and try-with-resources.
+            Use these tools to keep applications running safely, produce clearer error messages, and clean up files or streams reliably even when failures occur.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into <code class="text-brand-300">throw</code>, <code class="text-brand-300">throws</code>, and user-defined exceptions to express business rules more clearly.
+            File access examples based on <code class="text-brand-300">Files</code> and <code class="text-brand-300">Paths</code> also introduce the practical side of Java NIO by showing how modern file operations connect directly to exception handling.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, handle exceptional situations more intentionally, separate business logic from error-handling logic, and work with file-based resources in a safer and more maintainable way.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'sql-jdbc': {
+            phase: 'Phase 03',
+            title: 'Relational Databases (SQL & JDBC)',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 5h12M4 9h16M4 13h16M6 17h12M8 21h8"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of relational databases, tables, rows, columns, keys, constraints, and database relationships.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using SQL to create structures, insert data, query records, update values, and manage schema changes.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical knowledge of JDBC as the bridge between Java applications and relational databases.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better awareness of secure and structured database access through connections, prepared statements, result sets, and data sources.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By modeling data in relational tables and working with primary keys, foreign keys, and one-to-one, one-to-many, and many-to-many relationships.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on SQL practice using <code class="text-brand-300">CREATE</code>, <code class="text-brand-300">INSERT</code>, <code class="text-brand-300">SELECT</code>, <code class="text-brand-300">UPDATE</code>, <code class="text-brand-300">DELETE</code>, and <code class="text-brand-300">ALTER</code>.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By connecting Java code to a database through JDBC interfaces such as <code class="text-brand-300">Connection</code>, <code class="text-brand-300">Statement</code>, <code class="text-brand-300">PreparedStatement</code>, and <code class="text-brand-300">ResultSet</code>.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical database access patterns using JDBC URLs, drivers, generated keys, and <code class="text-brand-300">DataSource</code> for more realistic application setup.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces relational databases as the persistent storage layer behind many real applications.
+            Start by understanding how structured data is organized into tables and how database systems keep information searchable, secure, and consistent over time.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the foundations of SQL, including schema creation, data manipulation, querying, filtering, and table modification.
+            Use these operations to understand how relational systems model business data through keys, constraints, and table relationships that mirror the structure of real domains.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then connects database concepts back to Java through JDBC.
+            Explore how Java applications communicate with SQL databases using drivers, JDBC URLs, core interfaces, query execution, parameter binding, and result processing.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into practical access patterns such as prepared statements for safer queries, generated keys after inserts, and data source configuration for more scalable connection management.
+            The emphasis is on understanding both sides of the bridge: how data is stored relationally and how Java code reads, writes, and manages that data responsibly.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, design relational structures more clearly, write essential SQL with confidence, and connect Java programs to a database using the core JDBC workflow.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'spring-core': {
+            phase: 'Phase 04',
+            title: 'Spring Core & Dependency Injection',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c3 2 5 5 5 8a5 5 0 11-10 0c0-3 2-6 5-8zm0 10v8m-4-4h8"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of Spring Core as the foundation of the Spring ecosystem.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence with inversion of control, dependency injection, beans, and the role of the application context.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of how Spring reduces manual object creation and wiring in Java applications.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of configuration styles such as Java configuration, annotation-based configuration, and legacy XML setup.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By comparing traditional object creation with Spring-managed object creation to see how control shifts into the framework.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through dependency injection examples that show constructor injection, setter injection, and why constructor injection is usually preferred.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working with beans and the <code class="text-brand-300">ApplicationContext</code> as the container that creates, wires, and manages application components.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical configuration scenarios using <code class="text-brand-300">@Configuration</code>, <code class="text-brand-300">@Bean</code>, stereotype annotations, and component scanning.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces Spring Core as the foundation of modern Spring-based application development.
+            Start by understanding how Spring simplifies Java applications by managing object creation, lifecycle, and wiring so business logic can stay cleaner and more focused.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through inversion of control as the principle that shifts responsibility for object creation away from application code and into the framework.
+            Then connect that idea to dependency injection, where required collaborators are provided from the outside rather than being created manually inside each class.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module also explains the Spring IoC container through the <code class="text-brand-300">ApplicationContext</code> and shows how beans are discovered, created, and managed.
+            This creates the foundation for understanding how larger Spring applications stay modular, testable, and easier to maintain.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into configuration approaches such as Java configuration, annotation-based configuration, and XML-based configuration.
+            The emphasis stays on how these approaches define application structure and how Spring Core supports the wider ecosystem including Spring Boot, Data, Security, Web, and beyond.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, understand how Spring manages application components, use dependency injection more intentionally, and read Spring-based application structure with more confidence.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'spring-boot-jpa': {
+            phase: 'Phase 04',
+            title: 'Spring Boot & Data JPA',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h12v4H6zM5 10h14v10H5zM9 14h6m-6 3h4"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of how Spring Boot reduces configuration and speeds up application setup with starters, auto-configuration, and embedded servers.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence working with JPA entities, repositories, and ORM concepts that connect Java objects to relational tables.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of Spring Data JPA features such as repository interfaces, derived queries, paging, sorting, and custom queries.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of entity relationships, transaction handling, and the persistence patterns used in real Spring applications.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By creating Spring Boot projects with starter dependencies, application configuration files, and runnable application structure.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on work with entities, primary key strategies, ORM mapping, and JPA lifecycle concepts.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By building repository interfaces with <code class="text-brand-300">JpaRepository</code>, derived query methods, JPQL, native queries, paging, and sorting.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical examples of one-to-one, one-to-many, many-to-one, and many-to-many relationships, plus transaction and testing basics.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces Spring Boot as a faster way to build Spring applications and connects that foundation to database persistence through Spring Data JPA.
+            Start by understanding how Spring Boot simplifies application setup with opinionated defaults, embedded servers, starter dependencies, and automatic configuration.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the structure of a Spring Boot project, the role of configuration files, and the way Boot builds on top of the Spring Framework to reduce manual setup.
+            This creates a base for moving from plain Java configuration into a more production-ready application model.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then introduces JPA and ORM concepts so Java classes can be mapped to relational tables through entities, identifiers, and persistence rules.
+            From there, move into Spring Data JPA and use repository interfaces to perform common database operations with less boilerplate code.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into entity relationships, fetch strategies, cascades, transactions, projections, DTOs, and repository testing to understand how persistence behaves in larger systems.
+            The emphasis stays on building maintainable backend applications where Spring Boot handles infrastructure concerns and JPA manages object-relational persistence cleanly.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, understand the structure of a Spring Boot application, work with Spring Data JPA repositories more confidently, and model persistent domain data in a way that supports real backend development.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'spring-architecture': {
+            phase: 'Phase 04',
+            title: 'Multilayered Service Architecture',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M6 12h12M8 18h8"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of layered architecture as a structured way to organize Spring Boot applications.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence distinguishing the responsibilities of presentation, service, persistence, and database layers.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of why the service layer acts as the central place for business rules, coordination, and transaction handling.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of DTOs, records, mapping, and how clean separation improves maintainability, testing, and scalability.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By comparing software architecture styles and understanding why layered architecture fits many Spring business applications.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through concrete examples of controllers, services, repositories, and database interaction in a one-directional flow.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working through service-layer responsibilities such as validation, business rules, coordination, exception handling, and transactions.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through DTO and Java record examples that show how data is transferred safely between API boundaries and internal domain models.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces multilayered architecture as a clean way to structure backend applications so each part of the system has a clear responsibility.
+            Start by understanding software architecture as the higher-level blueprint that defines how components are organized, how they communicate, and how the system stays maintainable as it grows.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the layered model commonly used in Spring Boot applications, where requests move from the presentation layer to the service layer, then to the persistence layer, and finally to the database.
+            This one-way flow keeps responsibilities separated and prevents application logic from becoming tightly coupled and difficult to test.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module places special focus on the service layer as the brain of the application.
+            Use it to coordinate repositories, enforce business rules, manage transactions, validate operations, and raise meaningful business exceptions when rules are broken.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into DTOs and Java records to understand how external request and response data should stay separate from persistence entities.
+            The emphasis remains on writing applications that are easier to reason about, safer to evolve, and better prepared for larger backend systems.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, read layered Spring applications more clearly, place logic in the right layer, and design service-oriented backend code with better separation and stronger long-term maintainability.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'rest-api-design': {
+            phase: 'Phase 04',
+            title: 'RESTful API Design',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 12h10M5 16h14M17 6l2 2-2 2m0 4l2 2-2 2"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of REST as an architectural style for building client-server APIs over HTTP.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using HTTP methods, status codes, resource-based URLs, request bodies, path variables, and query parameters correctly.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of Spring REST controllers, validation, response handling, and consistent API error design.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better understanding of API documentation, CORS configuration, and the best practices that make REST services easier to consume and maintain.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By exploring REST principles such as statelessness, resource-oriented design, uniform interfaces, and client-server separation.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on Spring controller examples using <code class="text-brand-300">@RestController</code>, request mappings, path variables, and request parameters.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working with request bodies, DTO validation, <code class="text-brand-300">ResponseEntity</code>, global exception handling, and structured error responses.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical setup of Swagger/OpenAPI documentation, CORS configuration, and REST naming and versioning conventions.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces RESTful API design as the communication layer between frontend clients and backend services.
+            Start by understanding REST as a set of architectural constraints that make web APIs simpler, more scalable, and easier for different systems to integrate.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the core HTTP vocabulary of REST, including methods such as GET, POST, PUT, PATCH, and DELETE, along with the status codes that communicate whether a request succeeded or failed.
+            Use that foundation to design resource-oriented URLs and cleaner request-response flows.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then focuses on Spring REST controllers and the tools used to build production-ready API endpoints.
+            Explore request mapping, path variables, query parameters, request bodies, DTO validation, and response handling with clear and predictable outputs.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into centralized error handling, Swagger/OpenAPI documentation, CORS configuration, and general REST best practices such as versioning, consistent naming, statelessness, and proper use of nouns in routes.
+            The emphasis remains on designing APIs that are professional, easy to consume, and maintainable over time.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, design and read REST APIs with more confidence, structure Spring web endpoints more cleanly, and communicate application behavior through clearer contracts and HTTP conventions.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'tailwind-design': {
+            phase: 'Phase 05',
+            title: 'Tailwind CSS & Component Design',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M7 12h10M10 17h4"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of Tailwind CSS as a utility-first framework for building custom interfaces directly in markup.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence using utility classes for layout, spacing, color, typography, flexbox, grid, shadows, and responsive structure.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical awareness of component thinking, wireframing, and section-based UI construction before visual polish is added.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A stronger mindset for working with AI as a design and implementation partner through clearer prompts and more structured frontend planning.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By comparing traditional CSS workflows with Tailwind's utility-first approach and building components directly in HTML.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on use of Tailwind utilities for containers, breakpoints, spacing, color systems, flex layouts, and grid layouts.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By breaking interfaces into sections such as header, hero, cards, and footer, then turning wireframes into reusable frontend components.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through prompt-driven design exercises that move from idea to layout, from layout to components, and from components to polished UI.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces Tailwind CSS as a faster and more composable way to build modern frontend interfaces without relying on large custom stylesheet files.
+            Start by understanding utility-first design as a system where small classes are combined to create custom components directly inside the markup.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through the core Tailwind building blocks such as spacing, color scales, typography, shadows, rounded corners, breakpoints, flexbox, and grid.
+            This creates a practical foundation for building responsive interfaces quickly while keeping design decisions consistent across the page.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module also shifts attention from coding alone to interface thinking.
+            Use wireframes, layout planning, section breakdowns, and component-level design decisions to define how a page should work before asking AI or code to implement it.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into prompt-driven frontend workflows where AI is guided step by step instead of asked for a full design all at once.
+            The emphasis remains on stronger thinking, better structure, and clearer instructions so component design becomes more intentional and easier to refine.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, build Tailwind-based UI sections more confidently, think in reusable components instead of isolated code snippets, and turn design ideas into cleaner frontend structure with less friction.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'java-script': {
+            phase: 'Phase 05',
+            title: 'JavaScript (ES6+)',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h5m-5 5h8M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A solid understanding of modern JavaScript syntax, core data types, control flow, functions, arrays, objects, and error handling.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence working with ES6+ features such as <code>let</code>, <code>const</code>, template literals, arrow functions, rest parameters, callbacks, and closures.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical ability to manipulate the DOM, respond to browser events, build dynamic UI elements, and handle form interactions more cleanly.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clearer foundation for asynchronous programming with <code>fetch</code>, promises, <code>async/await</code>, and API-driven frontend behavior.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By starting with JavaScript fundamentals in both browser and Node.js environments, then building up from variables and expressions to reusable functions and structured logic.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on exercises with arrays, objects, JSON, and common built-in methods such as <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>find</code>, and <code>forEach</code>.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working directly with the DOM to select elements, update content, add styles, generate interface sections dynamically, and connect user actions to code with event listeners.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through practical API examples that use <code>fetch</code>, error handling, and asynchronous flows to connect frontend behavior to external data.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces JavaScript as the programming language that adds behavior, logic, and interactivity to modern web applications.
+            Start by understanding where JavaScript runs, how the browser and Node.js environments differ, and how core language features such as variables, types, operators, and control flow shape program behavior.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through functions, scope, hoisting, closures, arrays, objects, and JSON to build a stronger mental model of how JavaScript code is structured and executed.
+            The goal is not only to write syntax correctly, but to understand how data moves through a program and how reusable logic is organized.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then moves into browser-side development with the DOM, event handling, and dynamic element creation.
+            Explore how JavaScript selects elements, updates content, responds to user input, handles forms, and builds interface pieces directly from data.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into asynchronous JavaScript with <code>try...catch</code>, promises, <code>async/await</code>, and the Fetch API.
+            This part connects frontend code to real data sources and establishes the foundation needed for more advanced frameworks and API-driven applications.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, read and write modern JavaScript with more confidence, build dynamic browser interactions more deliberately, and approach frontend logic with a clearer understanding of both syntax and runtime behavior.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'react-typescript': {
+            phase: 'Phase 05',
+            title: 'React.js & TypeScript Integration',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
+            color: 'rose',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A practical understanding of React as a component-based library for building fast, interactive user interfaces.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence setting up modern React projects with Vite, TypeScript, and Tailwind CSS in a workflow that reflects professional frontend development.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Hands-on experience with JSX, TSX, props, state, hooks, forms, modals, data fetching, and React Router.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clearer understanding of how TypeScript improves React development through stronger typing, better tooling, and more predictable components.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By starting with React fundamentals, project setup, and the core shift from manual DOM updates to declarative component-driven interfaces.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through building components with JSX and TSX, passing data with props, and managing dynamic UI behavior with state and hooks such as <code>useState</code>, <code>useEffect</code>, and related patterns.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working through modal logic, controlled forms, validation, API calls, and state-driven rendering to connect user interaction to application behavior.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through routing, reusable layouts, and real frontend structure that mirrors how larger React applications are organized in practice.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-rose-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces React as a modern way to build user interfaces through reusable components, declarative rendering, and state-driven updates.
+            Start by understanding why React became important, how it simplifies UI development, and how a Vite-based setup with TypeScript creates a faster and more maintainable frontend workflow.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through project structure, JSX and TSX, component composition, and the difference between JavaScript and TypeScript in a React environment.
+            The focus is on building a clear foundation for how React applications are organized and how typed components improve reliability as projects grow.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then moves into props, events, hooks, and state management patterns that control how data flows through the interface.
+            Explore component communication, conditional rendering, modal behavior, forms, validation, and the practical use of hooks to keep the UI synchronized with application state.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into data fetching, Axios and Fetch comparisons, and React Router for navigation inside single-page applications.
+            This part connects component logic, typed data handling, and page-level structure into a more complete frontend architecture.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, build React interfaces with more confidence, structure components more intentionally, and use TypeScript to create frontend code that is easier to scale, debug, and maintain.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+        'spring-ai': {
+            phase: 'Phase 06',
+            title: 'Spring AI',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A clear understanding of how Spring AI connects Java applications to modern AI models without forcing vendor-specific code into the rest of the system.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Practical familiarity with chat models, streaming responses, structured output, prompt templates, advisors, chat memory, and tool calling.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence working with AI responses as usable application data instead of treating them only as plain text.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>A stronger foundation for building intelligent assistants, data-aware services, and AI-powered Spring applications with cleaner architecture.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By starting with the Spring AI abstraction layer and understanding the problem it solves when integrating OpenAI and other providers into Java applications.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through hands-on examples with <code>ChatClient</code>, simple chat requests, streaming output, structured responses, and prompt templates that keep AI interactions reusable and easier to maintain.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By working through advisors and chat memory to manage conversation context, request interception, and continuity across multiple user interactions.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through function and tool calling examples that connect AI models to real Java services, business logic, and live application behavior.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces Spring AI as the bridge between Spring-based Java applications and modern AI capabilities such as chat, structured output, streaming responses, and tool-enabled workflows.
+            Start by understanding the integration problem Spring AI solves: reducing vendor-specific complexity while keeping AI features aligned with familiar Spring development patterns.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through core features such as chat models, prompt templates, output conversion, and the practical use of <code>ChatClient</code> for building reusable AI interactions.
+            The emphasis is on treating AI as part of application architecture rather than as an isolated experiment.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then moves into advisors, chat memory, and structured response handling so AI conversations can preserve context and return data that fits naturally into Java code.
+            Explore how memory strategies, request interception, and POJO-based output make intelligent features more reliable and easier to extend.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into tool calling and function execution, where AI models trigger real Java methods to read data, perform actions, and support workflow-driven applications.
+            This is the point where conversational interfaces become connected to actual services, business logic, and production use cases.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, integrate Spring AI features into backend applications with more confidence, structure AI-powered services more deliberately, and connect models to real application behavior in a cleaner and more maintainable way.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
+
+    };
+
+    function openTopic(id) {
+        const topic = topics[id];
+        const modal = document.getElementById('topic-modal');
+        const title = document.getElementById('modal-title');
+        const phase = document.getElementById('modal-phase');
+        const body = document.getElementById('modal-body');
+        const icon = document.getElementById('modal-icon');
+        const phaseBaseClass = 'modal-chip text-[11px] font-semibold tracking-[0.2em]';
+        const iconBaseClass = 'w-14 h-14 rounded-[1.25rem] flex items-center justify-center border shadow-lg';
+
+        if (!topic) {
+            phase.innerText = 'Curriculum';
+            title.innerText = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            body.innerHTML = `
+                <div class="py-12 text-center">
+                    <div class="w-20 h-20 rounded-full bg-slate-800/50 flex items-center justify-center mx-auto mb-6 border border-white/5">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-white font-bold text-lg mb-2">Content Loading...</h4>
+                    <p class="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed">
+                        Detailed curriculum for this module is currently being optimized. Check back soon for the full syllabus!
+                    </p>
+                </div>
+            `;
+            icon.innerHTML = '<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>';
+            phase.className = `${phaseBaseClass} text-brand-300 border-brand-500/20 bg-brand-500/10`;
+            icon.className = `${iconBaseClass} bg-brand-500/10 text-brand-400 border-brand-500/20 shadow-brand-500/5`;
+        } else {
+            phase.innerText = topic.phase;
+            title.innerText = topic.title;
+            body.innerHTML = topic.content;
+            icon.innerHTML = topic.icon;
+
+            const colors = {
+                brand: {text: 'text-brand-400', bg: 'bg-brand-500/20'},
+                orange: {text: 'text-orange-400', bg: 'bg-orange-500/20'},
+                rose: {text: 'text-rose-400', bg: 'bg-rose-500/20'},
+                red: {text: 'text-red-400', bg: 'bg-red-500/20'}
+            };
+
+            const theme = colors[topic.color] || colors.brand;
+            phase.className = `${phaseBaseClass} ${theme.text} border-white/10 bg-white/5`;
+            icon.className = `${iconBaseClass} ${theme.bg} ${theme.text} border-white/10`;
+        }
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('topic-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function openAppModal() {
+        const modal = document.getElementById('app-modal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAppModal() {
+        const modal = document.getElementById('app-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function openDemoModal() {
+        const modal = document.getElementById('demo-modal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDemoModal() {
+        const modal = document.getElementById('demo-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('application-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+
+        submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+
+        setTimeout(() => {
+            submitBtn.innerText = 'Application Sent! ✅';
+            submitBtn.classList.remove('bg-brand-500', 'hover:bg-brand-600');
+            submitBtn.classList.add('bg-emerald-500');
+
+            setTimeout(() => {
+                closeAppModal();
+                // Reset form
+                setTimeout(() => {
+                    e.target.reset();
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed', 'bg-emerald-500');
+                    submitBtn.classList.add('bg-brand-500', 'hover:bg-brand-600');
+                }, 500);
+            }, 1500);
+        }, 2000);
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            closeAppModal();
+            closeDemoModal();
+        }
+    });
+
+    document.getElementById('topic-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'topic-modal') closeModal();
+    });
+
+    document.getElementById('app-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'app-modal') closeAppModal();
+    });
+
+    document.getElementById('demo-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'demo-modal') closeDemoModal();
+    });
+</script>
+</body>
+</html>
+
+
+
