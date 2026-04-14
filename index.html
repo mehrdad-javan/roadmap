@@ -2023,6 +2023,75 @@
 `
         },
 
+        'prompt-engineering': {
+            phase: 'Phase 06',
+            title: 'Prompt Engineering for Developers',
+            icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 6h.01M16 10h.01M9 16h6M12 3a7 7 0 00-4 12.744V19a1 1 0 001 1h6a1 1 0 001-1v-3.256A7 7 0 0012 3z"></path></svg>',
+            color: 'red',
+            content: `
+<div class="space-y-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">What You Will Gain</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>A practical understanding of generative AI, LLMs, tokens, and why prompt wording strongly affects the quality of model output.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Confidence designing stronger prompts with clear role, task, context, output, and constraint patterns instead of relying on vague one-line requests.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Hands-on familiarity with prompting techniques such as zero-shot, one-shot, few-shot, structured prompting, and step-by-step guidance for developer workflows.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Better judgment around prompt evaluation, hallucinations, privacy, bias, and when AI output still requires careful human review.</span></li>
+            </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+            <h5 class="text-white font-semibold text-base mb-3">How You Will Learn</h5>
+            <ul class="space-y-3 text-slate-300 text-sm list-none pl-0">
+                <li class="flex items-start gap-3">${listItemIcon}<span>By starting with the foundations of generative AI and large language models so prompt design is connected to how these systems actually generate responses.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through rewriting weak prompts into stronger ones using reusable structures built around role, task, context, output format, and practical constraints.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>By comparing work in chat clients, playgrounds, and API-style flows, including the difference between <code>system</code> prompts and <code>user</code> prompts.</span></li>
+                <li class="flex items-start gap-3">${listItemIcon}<span>Through scenario-based exercises for summarization, extraction, brainstorming, customer support, and coding assistance, followed by prompt evaluation and refinement.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="space-y-5 border-l border-white/10 pl-6">
+        <h4 class="text-red-400 font-semibold text-xs uppercase tracking-[0.2em]">
+            Description
+        </h4>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed">
+            This topic introduces prompt engineering as a practical skill for developers who want to use AI more deliberately in learning, coding, documentation, analysis, and product workflows.
+            Start by understanding generative AI, large language models, token-based generation, and why the same model can produce very different results depending on the prompt it receives.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Work through how prompts shape output and how stronger prompts are built from role, task, context, output, and constraints.
+            The emphasis is on moving from casual prompting toward a more structured approach that produces results which are clearer, more relevant, and easier to reuse.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The module then moves into practical prompt patterns such as zero-shot, one-shot, few-shot, role prompting, and step-by-step guidance.
+            Explore how these techniques apply differently across chat clients, playgrounds, and API workflows, including how <code>system</code> and <code>user</code> prompts can be separated for better control.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            Continue into common use cases such as summarization, rewriting, classification, extraction, brainstorming, customer support, and coding assistance.
+            Prompt quality is then evaluated through comparison, iteration, and criteria such as relevance, completeness, accuracy, tone, format compliance, and actionability.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed">
+            The topic also addresses the limits of AI systems, including hallucinations, overconfidence, privacy risks, bias, and prompt injection.
+            This creates a stronger foundation for using AI responsibly before integrating model behavior into real applications with Spring AI.
+        </p>
+
+        <p class="text-base md:text-lg text-slate-200 leading-relaxed font-medium">
+            By the end of the topic, write prompts more intentionally, test and improve them more systematically, and treat AI prompting as an engineering skill that supports safer and more effective application development.
+        </p>
+    </div>
+
+</div>
+`
+        },
+
         'spring-ai': {
             phase: 'Phase 06',
             title: 'Spring AI',
